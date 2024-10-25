@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Firebase Float Example</title>
+	<style>
+			body{
+				background-color:#007700;
+				color:white;
+				font-family:Verdana;
+			}
+	</style>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database.js"></script>
+</head>
+<body>
+    <h1>Write Float to Firebase Realtime Database</h1>
+    <input type="number" id="floatInput" step="0.01" placeholder="Enter a float value" />
+    <button id="submitBtn">Submit</button>
+
+    <script>
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "YOUR_API_KEY",
+            authDomain: "YOUR_AUTH_DOMAIN",
+            databaseURL: "YOUR_DATABASE_URL",
+            projectId: "YOUR_PROJECT_ID",
+            storageBucket: "YOUR_STORAGE_BUCKET",
+            messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+            appId: "YOUR_APP_ID"
+        };
+
+        // Initialize Firebase
+        const app = firebase.initializeApp(firebaseConfig);
+        const database = firebase.database();
+
+        document.getElementById('submitBtn').addEventListener('click', () => {
+            const floatValue = parseFloat(document.getElementById('floatInput').value);
+            if (!isNaN(floatValue)) {
+                // Write the float value to the database
+                database.ref('floatValues/').push({ value: floatValue })
+                    .then(() => {
+                        console.log('Float value written successfully.');
+                    })
+                    .catch((error) => {
+                        console.error('Error writing float value:', error);
+                    });
+            } else {
+                console.error('Please enter a valid float value.');
+            }
+        });
+    </script>
+</body>
+</html>
