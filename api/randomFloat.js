@@ -5,5 +5,12 @@ export default async function handler(req, res) {
     console.log('Random float:', randomFloat);
 
     // Respond to the request
-    res.status(200).json({ value: randomFloat });
+	let nama = [randomFloat,'satuuu','dua',]
+	let i = 0
+	let f = ()=>{
+        res.status(200).json({ value: nama[i++]});
+	}
+    setTimeout(f,1111,)
+    setTimeout(f,2222,)
+    setTimeout(f,3333,)
 }
