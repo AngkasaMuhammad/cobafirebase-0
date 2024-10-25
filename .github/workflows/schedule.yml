@@ -1,0 +1,13 @@
+name: Schedule Random Float
+
+on:
+  schedule:
+    - cron: '*/1 * * * *' # Runs every minute
+
+jobs:
+  send-request:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send request to Vercel function
+        run: |
+          curl -X GET https://cobafirebase-0.vercel.app/api/randomFloat
