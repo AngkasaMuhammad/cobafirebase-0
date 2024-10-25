@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Firebase Example</title>
+	<style>
+			body{
+				background-color:#007700;
+				color:white;
+				font-family:Verdana;
+			}
+	</style>
+    <!-- Include Firebase libraries -->
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js';
+        import { getDatabase, ref, set } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-database.js';
+
+        // Your web app's Firebase configuration
+		let aa = initializeApp
+        const firebaseConfig = {
+            //apiKey: "YOUR_API_KEY",
+            //authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+            databaseURL: "https://datakarepku-default-rtdb.firebaseio.com",
+            //projectId: "YOUR_PROJECT_ID",
+            //storageBucket: "YOUR_PROJECT_ID.appspot.com",
+            //messagingSenderId: "YOUR_SENDER_ID",
+            //appId: "YOUR_APP_ID"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const database = getDatabase(app);
+
+        // Function to write a float to the database
+        function writeFloat(value) {
+            set(ref(database, 'aa'), value)
+                .then(() => {
+                    console.log('Float written successfully!');
+                })
+                .catch((error) => {
+                    console.error('Error writing float: ', error);
+                });
+        }
+
+        // Add event listener to button after DOM is fully loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('writeButton').addEventListener('click', () => {
+                const floatValue = Date.now(); // Example float value
+                writeFloat(floatValue);
+            });
+        });
+    </script>
+    <script>
+		console.log(aa)
+    </script>
+</head>
+<body>
+    <h1>Write Float to Firebase</h1>
+    <button id="writeButton">Write Float</button>
+</body>
+</html>
