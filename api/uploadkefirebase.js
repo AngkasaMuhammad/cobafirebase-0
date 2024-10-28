@@ -1,4 +1,4 @@
-/*
+
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js';
 import { getDatabase, ref, set } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-database.js';
 
@@ -7,7 +7,7 @@ const firebaseConfig = {
 };
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
-*/
+
 export default async function handler(req, res) {
 	const value = (Math.random()-.5)*999)
 	try{
